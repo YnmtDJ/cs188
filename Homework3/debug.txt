@@ -1,0 +1,63 @@
+Question q5
+===========
+
+Pacman emerges victorious! Score: 877
+Pacman emerges victorious! Score: 1211
+Pacman emerges victorious! Score: 849
+Pacman emerges victorious! Score: 895
+Pacman emerges victorious! Score: 1046
+Pacman emerges victorious! Score: 1265
+Pacman emerges victorious! Score: 1081
+Pacman emerges victorious! Score: 1079
+Pacman emerges victorious! Score: 1105
+Pacman emerges victorious! Score: 907
+Average Score: 1031.5
+Scores:        877.0, 1211.0, 849.0, 895.0, 1046.0, 1265.0, 1081.0, 1079.0, 1105.0, 907.0
+Win Rate:      10/10 (1.00)
+Record:        Win, Win, Win, Win, Win, Win, Win, Win, Win, Win
+*** PASS: test_cases\q5\grade-agent.test (6 of 6 points)
+***     1031.5 average score (2 of 2 points)
+***         Grading scheme:
+***          < 500:  0 points
+***         >= 500:  1 points
+***         >= 1000:  2 points
+***     10 games not timed out (1 of 1 points)
+***         Grading scheme:
+***          < 0:  fail
+***         >= 0:  0 points
+***         >= 10:  1 points
+***     10 wins (3 of 3 points)
+***         Grading scheme:
+***          < 1:  fail
+***         >= 1:  1 points
+***         >= 5:  2 points
+***         >= 10:  3 points
+
+### Question q5: 6/6 ###
+
+
+Finished at 13:18:15
+
+Provisional grades
+==================
+Question q5: 6/6
+------------------
+Total: 6/6
+
+
+food_dis = 999999
+    for i in range(width):
+        for j in range(height):
+            if foods[i][j]:
+                food_dis = min(food_dis, abs(pacman[0]-i)+abs(pacman[1]-j))
+    for capsule in capsules:
+        food_dis = min(food_dis, abs(pacman[0]-capsule[0]) + abs(pacman[1]-capsule[1]))
+    for ghost, ghost_state in zip(ghosts, ghosts_state):
+        if ghost_state.scaredTimer > 0:
+            food_dis = min(food_dis, abs(pacman[0] - ghost[0]) + abs(pacman[1] - ghost[1]))
+    food_score = width+height-food_dis
+    n_score = (width*height-n_food-len(ghosts))
+    return food_score + 10*n_score
+
+
+
